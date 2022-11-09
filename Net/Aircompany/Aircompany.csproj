@@ -47,9 +47,9 @@
     <Compile Include="Models\ClassificationLevel.cs" />
     <Compile Include="Models\ExperimentalTypes.cs" />
     <Compile Include="Models\MilitaryType.cs" />
-    <Compile Include="Planes\MilitaryPlane.cs" />
-    <Compile Include="Planes\PassengerPlane.cs" />
-    <Compile Include="Planes\Plane.cs" />
+    <Compile Include="planes\MilitaryPlane.cs" />
+    <Compile Include="planes\PassengerPlane.cs" />
+    <Compile Include="planes\Plane.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
