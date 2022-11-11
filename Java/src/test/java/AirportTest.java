@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AirportTest {
-    private static List<Plane> planes = Arrays.asList(
+    private static List<Plane> testPlanesList = Arrays.asList(
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),
             new PassengerPlane("Boeing-747", 980, 16100, 70500, 242),
@@ -35,28 +35,25 @@ public class AirportTest {
 
     @Test
     public void testGetTransportMilitaryPlanes() {
-        Airport airport = new Airport(planes);
+        Airport airport = new Airport(testPlanesList);
         List<MilitaryPlane> transportMilitaryPlanes = airport.getTransportMilitaryPlanes();
-        boolean flag = false;
         for (MilitaryPlane militaryPlane : transportMilitaryPlanes) {
             if ((militaryPlane.getMilitaryType() == MilitaryType.TRANSPORT)) {
-                flag = true;
-                break;
+                Assert.assertEquals(militaryPlane.getMilitaryType(), MilitaryType.TRANSPORT);
             }
         }
-        Assert.assertTrue(flag);
     }
 
     @Test
     public void testGetPassengerPlaneWithMaxCapacity() {
-        Airport airport = new Airport(planes);
+        Airport airport = new Airport(testPlanesList);
         PassengerPlane expectedPlaneWithMaxPassengersCapacity = airport.getPassengerPlaneWithMaxPassengersCapacity();
         Assert.assertEquals(planeWithMaxPassengerCapacity, expectedPlaneWithMaxPassengersCapacity);
     }
 
     @Test
     public void test() {
-        Airport airport = new Airport(planes);
+        Airport airport = new Airport(testPlanesList);
         airport.sortByMaxLoadCapacity();
         List<? extends Plane> planesSortedByMaxLoadCapacity = airport.getPlanes();
         boolean isNextPlaneMaxLoadCapacityHigherThanCurrent = true;
@@ -73,7 +70,7 @@ public class AirportTest {
 
     @Test
     public void testHasAtLeastOneBomberInMilitaryPlanes() {
-        Airport airport = new Airport(planes);
+        Airport airport = new Airport(testPlanesList);
         List<MilitaryPlane> bomberMilitaryPlanes = airport.getBomberMilitaryPlanes();
         for (MilitaryPlane militaryPlane : bomberMilitaryPlanes) {
             if ((militaryPlane.getMilitaryType() != MilitaryType.BOMBER)) {
@@ -84,15 +81,12 @@ public class AirportTest {
 
     @Test
     public void testExperimentalPlanesHasClassificationLevelHigherThanUnclassified() {
-        Airport airport = new Airport(planes);
+        Airport airport = new Airport(testPlanesList);
         List<ExperimentalPlane> experimentalPlanes = airport.getExperimentalPlanes();
-        boolean isUnclassifiedPlanes = false;
         for (ExperimentalPlane experimentalPlane : experimentalPlanes) {
             if (experimentalPlane.getClassificationLevel() == ClassificationLevel.UNCLASSIFIED) {
-                isUnclassifiedPlanes = true;
-                break;
+                Assert.assertEquals(experimentalPlane.getClassificationLevel(), ClassificationLevel.UNCLASSIFIED);
             }
         }
-        Assert.assertFalse(isUnclassifiedPlanes);
     }
 }
