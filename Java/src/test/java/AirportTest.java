@@ -57,7 +57,7 @@ public class AirportTest {
         for (int i = 0; i < planesSortedByMaxLoadCapacity.size() - 1; i++) {
             Plane currentPlane = planesSortedByMaxLoadCapacity.get(i);
             Plane nextPlane = planesSortedByMaxLoadCapacity.get(i + 1);
-            Assert.assertTrue(currentPlane.getMinLoadCapacity() < nextPlane.getMinLoadCapacity());
+            Assert.assertFalse(currentPlane.getMinLoadCapacity() < nextPlane.getMinLoadCapacity());
         }
     }
 
